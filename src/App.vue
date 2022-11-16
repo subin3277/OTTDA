@@ -1,9 +1,12 @@
 <template>
   <div id="app">
     <div id="logo">
-      <span></span>
+      <span style="visibility: hidden">
+        <button id="button">Sign In</button>
+        <button id="button">Sign Up</button>
+      </span>
       <router-link to="/">
-        <img src="../src/assets/qukka.png" alt="logo" width="50px" />
+        <img src="../src/assets/logo_main.png" alt="logo" width="80px" />
       </router-link>
       <span class="flex-direction">
         <button id="button">Sign In</button>
@@ -46,25 +49,26 @@ nav {
 }
 
 nav a {
-  font-weight: bold;
+  /* font-weight: bold; */
   color: #2c3e50;
+  font-size: 20px;
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #a3e1f4;
 }
 
 #button {
-  margin : 7px;
+  margin: 7px;
 }
 
 @font-face {
   font-family: "cafe";
-  src: url('../src/assets/fonts/Cafe24Ssurround.ttf');
+  src: url("../src/assets/fonts/Cafe24Ssurround.ttf");
 }
 
 @font-face {
   font-family: "cafeair";
-  src: url('../src/assets/fonts/Cafe24SsurroundAir.ttf');
+  src: url("../src/assets/fonts/Cafe24SsurroundAir.ttf");
 }
 </style>
