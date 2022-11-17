@@ -23,11 +23,5 @@ export default {
 </script>
 
 <style>
-#carditem {
-  text-align: center;
-  display: flex;
-  flex-flow:row nowrap;
-  justify-content: center;
-  margin : 0px 20px
-}
+
 </style>
