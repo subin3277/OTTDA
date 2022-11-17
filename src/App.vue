@@ -22,7 +22,7 @@
         <router-link to="/review" class="col">나는 이걸로 웃지</router-link>
       </div>
     </nav>
-    <router-view />
+    <router-view style="margin: 0px 30px"/>
   </div>
 </template>
 

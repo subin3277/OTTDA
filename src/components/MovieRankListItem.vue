@@ -1,6 +1,6 @@
 <template>
   <div class="card" @click="goDetail(movieranklist.movie_id)">
-    <p v-if="!movieranklist.poster_path"></p>
+    <p v-if="!movieranklist.poster_path">로딩 중.......</p>
     <img :src="movieranklist.poster_path" class=""
       alt="..."
       style="width : 270px; height : 350px"/>
