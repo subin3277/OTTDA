@@ -1,63 +1,62 @@
 <template>
   <div>
-    <carousel>
-      <slide>slide1</slide>
-      <slide>slide2</slide>
-      <slide>slide2</slide>
-      <slide>slide2</slide>
-      <slide>slide2</slide>
-      <slide>slide2</slide>
-    </carousel>
-    <MovieRankListItem/>
-    <!-- <div class="carousel slide" data-bs-ride="carousel">
-      <div  class="carousel-inner">
-        <div id="rankmovie" class="carousel-item active" >
-          <MovieRankListItem />
-        </div>
-        
-        <div class="carousel-item"></div>
-        <div class="carousel-item"></div>
-      </div>
+    <b-carousel
+      id="carousel-1"
+      :interval="4000"
+      controls
+      img-width="1024"
+      img-height="480"
+      style="text-shadow: 1px 1px 2px #333;"
+    >
+      <b-carousel-slide v-for="i in 5" :key=i>
+        <template #img>
+          <div id="rankmovie">
+            <MovieRankListItem :movieranklist="rankmovie[i*3-3]" />
+            <MovieRankListItem :movieranklist="rankmovie[i*3-2]" />
+            <MovieRankListItem :movieranklist="rankmovie[i*3-1]" />
+          </div>
+        </template>
+      </b-carousel-slide>
+    </b-carousel>
 
-      <button
-        class="carousel-control-prev"
-        type="button"
-        data-bs-target="#carouselExampleControls"
-        data-bs-slide="prev"
-      >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button
-        class="carousel-control-next"
-        type="button"
-        data-bs-target="#carouselExampleControls"
-        data-bs-slide="next"
-      >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div> -->
-    
+    <br>
+
+    <b-carousel
+      :interval="4000"
+      controls
+      img-width="1024"
+      img-height="480"
+      style="text-shadow: 1px 1px 2px #333;"
+    >
+      <b-carousel-slide v-for="i in 5" :key=i>
+        <template #img>
+          <div id="rankmovie">
+            <TVRankListItem :movieranklist="ranktv[i*3-3]" />
+            <TVRankListItem :movieranklist="ranktv[i*3-2]" />
+            <TVRankListItem :movieranklist="ranktv[i*3-1]" />
+          </div>
+        </template>
+      </b-carousel-slide>
+    </b-carousel>
   </div>
 </template>
 
 <script>
 import MovieRankListItem from "../components/MovieRankListItem"
+import TVRankListItem from "../components/TVRankListItem"
 import axios from "axios"
-
-import {Carousel, Slide} from 'vue-carousel'
 
 export default {
   name: "MovieRankList",
   components: {
     MovieRankListItem,
-    Carousel,
-    Slide
+    TVRankListItem,
   },
   data() {
     return {
       rankmovie: [],
+      ranktv : [],
+      i:0
     }
   },
   methods: {
@@ -69,7 +68,24 @@ export default {
         method: "get",
       })
         .then((res) => {
-          this.rankmovie = res
+          console.log()
+          this.rankmovie = res.data
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+
+    getTvRank() {
+      // const url = "http://52.196.3.18:8000/movies/"
+      const url = "http://127.0.0.1:8000/movies/tv/"
+      axios({
+        url: url,
+        method: "get",
+      })
+        .then((res) => {
+          console.log()
+          this.ranktv = res.data
         })
         .catch((error) => {
           console.log(error)
@@ -78,6 +94,7 @@ export default {
   },
   created() {
     this.getMovieRank()
+    this.getTvRank()
   },
 }
 </script>
@@ -86,7 +103,7 @@ export default {
 #rankmovie {
   text-align: center;
   display: flex;
-  flex-flow:row nowrap;
+  flex-flow: row nowrap;
   justify-content: center;
 }
 </style>

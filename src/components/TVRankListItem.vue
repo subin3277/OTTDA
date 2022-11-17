@@ -1,10 +1,10 @@
 <template>
-  <div class="card" @click="goDetail(movieranklist.movie_id)">
+  <div class="card">
     <p v-if="!movieranklist.poster_path"></p>
     <img :src="movieranklist.poster_path" class=""
       alt="..."
       style="width : 270px; height : 350px"/>
-    <div class="card-body">{{movieranklist.title}}</div>
+    <div class="card-body">{{movieranklist.name}}</div>
   </div>
 </template>
 
@@ -13,11 +13,6 @@ export default {
   name : 'MovieRankListItem',
   props : {
     movieranklist : Object,
-  },
-  methods : {
-    goDetail(movie_id){
-      this.$router.push({name :'detail', params : {movie_id}})
-    }
   }
 }
 </script>

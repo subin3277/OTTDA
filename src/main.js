@@ -3,8 +3,8 @@ import App from "./App.vue"
 import store from "./store"
 import router from "./router"
 
-import VueCarousel from 'vue-carousel' // npm install vue-carousel
-Vue.use(VueCarousel)
+// import VueCarousel from 'vue-carousel' // npm install vue-carousel
+// Vue.use(VueCarousel)
 
 import BootstrapVue from "bootstrap-vue"
 import "bootstrap/dist/css/bootstrap.min.css"
