@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-col>
-      <div class="card" id="carditem" style="width: 300px" @click="goDetail">
+      <div class="card" id="carditem" style="width: 300px" @click="goDetail(searchItem.multi_id,searchItem.media_type)">
         <img v-if="searchItem.poster_path == 'https://image.tmdb.org/t/p/originalNone'" src="../assets/quokka.png" style="width: 270px; margin-top: 10px">
         <img v-else
           :src="searchItem.poster_path"
@@ -22,8 +22,8 @@ export default {
     searchItem: Object,
   },
   methods: {
-    goDetail(movie_id) {
-      this.$router.push({ name: "detail", params: { movie_id } })
+    goDetail(id, type) {
+      this.$router.push({ name: "detail", params: { id:id , media_type: type} })
     },
   },
 }

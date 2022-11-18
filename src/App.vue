@@ -16,10 +16,10 @@
 
     <nav class="container">
       <div class="row">
-        <router-link to="/search" class="col">무엇으로 웃지</router-link>
-        <router-link to="/recom" class="col">어디서 웃지</router-link>
-        <router-link to="/article" class="col">누구랑 웃지</router-link>
-        <router-link to="/review" class="col">나는 이걸로 웃지</router-link>
+        <router-link to="/search" class="col">무엇으로 웃지?</router-link>
+        <router-link to="/recom" class="col">어디서 웃지?</router-link>
+        <router-link to="/article" class="col">누구랑 웃지?</router-link>
+        <router-link to="/review" class="col">나는 이걸로 웃지?</router-link>
       </div>
     </nav>
     <router-view style="margin: 0px 30px"/>
@@ -52,6 +52,7 @@ nav a {
   /* font-weight: bold; */
   color: #2c3e50;
   font-size: 20px;
+  text-decoration: none;
 }
 
 nav a.router-link-exact-active {
@@ -61,6 +62,7 @@ nav a.router-link-exact-active {
 #button {
   margin: 7px;
 }
+
 
 @font-face {
   font-family: "cafe";
