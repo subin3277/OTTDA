@@ -1,5 +1,5 @@
 <template>
-  <div class="card" @click="goDetail(movieranklist.movie_id)">
+  <div class="card" @click="goDetail(movieranklist.multi_id)">
     <p v-if="!movieranklist.poster_path">로딩 중.......</p>
     <img :src="movieranklist.poster_path" class=""
       alt="..."
@@ -15,8 +15,9 @@ export default {
     movieranklist : Object,
   },
   methods : {
-    goDetail(movie_id){
-      this.$router.push({name :'detail', params : {movie_id}})
+    goDetail(id){
+      console.log(id)
+      this.$router.push({name :'detail', params : {id:id, media_type:'movie'}})
     }
   }
 }
