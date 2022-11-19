@@ -1,9 +1,10 @@
 <template>
   <div>
     <div id="detail_description">
-      <img :src = "detail.logo_path" style="width:200px ; margin: 20px 10px 20px 30px">
+      <img :src = "detail.poster_path" style="width:200px ; margin: 20px 10px 20px 30px">
       <div style="margin-left:10px">
-        <h1>{{detail.title}}</h1>
+        <h1 v-if="type==='movie'">{{detail.title}}</h1>
+        <h1 v-else-if="type==='tv'">{{detail.name}}</h1>
         <p>{{detail.overview}}</p>
         <p>{{detail.release_date}}</p>
       </div>
@@ -25,7 +26,8 @@ export default {
     return {
       ottlist : null,
       message : "시청가능한 OTT가 없습니다!",
-      detail : null
+      detail : null,
+      type : null,
     }
   },
   components: {
@@ -35,6 +37,7 @@ export default {
     getOTT(id, type){
       console.log(id, type)
       let url = "http://127.0.0.1:8000/movies/"
+      this.type = type
       if (type === 'movie') {
         url = url + 'movieprovider/' 
       } 
@@ -55,6 +58,7 @@ export default {
     },
     getDetail(id, type){
       let url = "http://127.0.0.1:8000/movies/"
+      this.type = type
       if (type === 'movie') {
         url = url + 'moviedetail/' 
       } 

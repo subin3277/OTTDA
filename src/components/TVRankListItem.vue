@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" @click="goDetail(movieranklist.tv_id)">
     <p v-if="!movieranklist.poster_path"></p>
     <img :src="movieranklist.poster_path" class=""
       alt="..."
@@ -10,9 +10,15 @@
 
 <script>
 export default {
-  name : 'MovieRankListItem',
+  name : 'TVRankListItem',
   props : {
     movieranklist : Object,
+  },
+  methods : {
+    goDetail(id){
+      console.log(id)
+      this.$router.push({name :'detail', params : {id:id, media_type:'tv'}})
+    }
   }
 }
 </script>

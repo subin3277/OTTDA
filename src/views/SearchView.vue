@@ -1,10 +1,10 @@
 <template>
   <div>
     <p @keyup.enter="search">
-      <input type="text" style="width: 500px" v-model="inputdata" />
+      <input type="text" style="width: 500px" :value="inputdata" @input="inputdata = $event.target.value" />
       <button style="margin: 10px" @click="search">검색</button>
     </p>
-    <p v-if="!ressearch">검색어를 입력해주세요!</p>
+    <p v-if="inputdata===null">검색어를 입력해주세요!</p>
     <p v-else>
       <b-container>
         <b-row cols="3" align-h="center">

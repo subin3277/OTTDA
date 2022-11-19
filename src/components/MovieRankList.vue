@@ -106,4 +106,12 @@ export default {
   flex-flow: row nowrap;
   justify-content: center;
 }
+
+.sr-only {
+  display: none;
+}
+
+.carousel-contro-next {
+  background-color: black;
+}
 </style>
