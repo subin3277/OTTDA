@@ -3,7 +3,7 @@
     <div id="detail_description">
       <img :src = "detail.poster_path" style="width:200px ; margin: 20px 10px 20px 30px">
       <div style="margin-left:10px">
-        <h1 v-if="type==='moive'">{{detail.title}}</h1>
+        <h1 v-if="type==='movie'">{{detail.title}}</h1>
         <h1 v-else-if="type==='tv'">{{detail.name}}</h1>
         <p>{{detail.overview}}</p>
         <p>{{detail.release_date}}</p>
