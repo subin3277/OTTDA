@@ -35,7 +35,8 @@ export default {
     return {
       inputdata : null,
       searchlist : [],
-      list : []
+      list : [],
+      inputid : null,
     }
   },
   methods : {
@@ -53,8 +54,10 @@ export default {
         })
     },
     pluslist() {
-      this.searchlist.push(this.inputdata)
+      const tmp = {id : this.inputid, title : this.inputdata}
+      this.searchlist.push(tmp)
       this.inputdata = null
+      this.inputid = null
       this.closeKeywords()
     },
     closeKeywords(){
@@ -76,10 +79,12 @@ export default {
         keywords.innerHTML = ""
         
         const $ul = document.createElement("ul")
+        $ul.style.padding = "0px"
         for(let lst of this.list) {
             const $li = document.createElement("li")
             $li.textContent = `${lst.title}`
-            $li.style.border = "1px solid black"
+            $li.setAttribute('id', lst.multi_id)
+            $li.style.border = "0.5px solid black"
             $ul.append($li)
         }
         keywords.append($ul)
@@ -118,6 +123,7 @@ export default {
           target.classList.add("selected")
           keyword.value = target.textContent
           this.inputdata = target.textContent
+          this.inputid = target.id
       }
     },
   }
@@ -136,5 +142,10 @@ export default {
   #inputform{
     display: flex;
     justify-content: center;
+  }
+
+  li {
+    list-style: none;
+    padding-left: 0px;
   }
 </style>

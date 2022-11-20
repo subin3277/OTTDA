@@ -1,6 +1,7 @@
 <template>
   <div id="searchitem">
-    <span style="margin-left:5px">{{searchItem}}</span>
+    <span style="margin-left:5px">{{searchItem.title}}</span>
+    <!-- <span style="margin-left:5px">{{searchItem.id}}</span> -->
     <div>x</div>
   </div>
 </template>
@@ -9,7 +10,7 @@
 export default {
   name : 'RecoSearchListItem',
   props : {
-    searchItem : String
+    searchItem : Object
   }
 }
 </script>
