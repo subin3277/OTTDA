@@ -9,8 +9,12 @@
         <img src="../src/assets/logo_main.png" alt="logo" width="80px" />
       </router-link>
       <span class="flex-direction">
-        <button id="button">Sign In</button>
-        <button id="button">Sign Up</button>
+        <button id="button">
+          <router-link to="/signin">Sign In</router-link>
+        </button>
+        <button id="button" to="/signup">
+          <router-link to="/signup">Sign Up</router-link>
+        </button>
       </span>
     </div>
 
@@ -63,6 +67,10 @@ nav a.router-link-exact-active {
   margin: 7px;
 }
 
+#button a {
+  text-decoration: none;
+  color: black;
+}
 
 @font-face {
   font-family: "cafe";
