@@ -26,7 +26,10 @@
         <router-link to="/review" class="col">나는 이걸로 웃지?</router-link>
       </div>
     </nav>
-    <router-view id="routerview" style="margin: 0px 30px" />
+    <div id="router">
+      <router-view id="routerview" />
+    </div>
+    
 
     <footer
       class="footer"
@@ -51,7 +54,9 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: black;
-
+  min-height: 100%;
+  position: relative;
+  padding-bottom : 0px;
 }
 
 #logo {
@@ -87,17 +92,25 @@ nav a.router-link-exact-active {
   color: black;
 }
 
+#router {
+  display: flex;
+  justify-content: center;
+}
 #routerview {
   height: auto;
-  min-height: 100%;
+  min-height: 70vh;
   padding-bottom: 100px;
+  width: 70%;
+  
 }
 
 footer {
+  font-family: cafeair;
   width: 100%;
-  height: 100px;
+  height: 130px;
   position: relative;
-  transform: translate(-100%);
+  padding: 5px;
+  bottom : 0;
 }
 
 @font-face {
