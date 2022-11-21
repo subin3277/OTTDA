@@ -91,6 +91,9 @@ export default {
           console.log(err)
         })
     },
+    godetail(id) {
+      this.$router.push({name : 'articledetail', params : {id}})
+    }
   },
   created() {
     this.getarticle()
