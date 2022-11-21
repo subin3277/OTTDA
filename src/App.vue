@@ -26,7 +26,20 @@
         <router-link to="/review" class="col">나는 이걸로 웃지?</router-link>
       </div>
     </nav>
-    <router-view style="margin: 0px 30px"/>
+    <router-view id="routerview" style="margin: 0px 30px" />
+
+    <footer
+      class="footer"
+      style="background: #fdf5c7; margin-top: 50px; padding: 5px"
+    >
+      SSAFY 8th
+      <br />
+      SEOUL_01
+      <br />
+      김수빈 subin3277@gmail.com
+      <br />
+      박세희 seheep1217@gmail.com
+    </footer>
   </div>
 </template>
 
@@ -38,6 +51,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: black;
+
 }
 
 #logo {
@@ -65,11 +79,25 @@ nav a.router-link-exact-active {
 
 #button {
   margin: 7px;
+  border-radius: 10px;
 }
 
 #button a {
   text-decoration: none;
   color: black;
+}
+
+#routerview {
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 100px;
+}
+
+footer {
+  width: 100%;
+  height: 100px;
+  position: relative;
+  transform: translate(-100%);
 }
 
 @font-face {

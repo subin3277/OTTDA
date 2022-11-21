@@ -6,6 +6,9 @@ import DetailView from "../views/DetailView.vue"
 import RecoView from "../views/RecoView.vue"
 import SigninView from "../views/SigninView.vue"
 import SignupView from "../views/SignupView.vue"
+import CreateArticleView from "../views/CreateArticleView.vue"
+import ArticleView from "../views/ArticleView.vue"
+import ArticleDetailView from "../views/ArticleDetailView.vue"
 
 Vue.use(VueRouter)
 
@@ -40,8 +43,23 @@ const routes = [
     name: "signup",
     component: SignupView,
   },
+  {
+    path: "/article/create",
+    name: "createarticle",
+    component: CreateArticleView,
+  },
+  {
+    path: "/article",
+    name: "article",
+    component: ArticleView,
+  },
+  {
+    path: "/article/detail",
+    name: "articledetail",
+    component: ArticleDetailView,
+  },
 ]
-
+  
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,

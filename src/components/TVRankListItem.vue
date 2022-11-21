@@ -16,7 +16,6 @@ export default {
   },
   methods : {
     goDetail(id){
-      console.log(id)
       this.$router.push({name :'detail', params : {id:id, media_type:'tv'}})
     }
   }
