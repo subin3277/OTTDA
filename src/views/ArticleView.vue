@@ -214,9 +214,4 @@ table {
   padding: 0 5px;
   color: #666;
 }
-
-@font-face {
-  font-family: "cafeair";
-  src: url("../assets/fonts/Cafe24SsurroundAir.ttf");
-}
 </style>

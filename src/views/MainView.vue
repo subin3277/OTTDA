@@ -172,4 +172,8 @@ table {
   padding: 0 5px;
   color: #666;
 }
+
+td {
+  font-family: cafeair;
+}
 </style>
