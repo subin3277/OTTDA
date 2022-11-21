@@ -13,8 +13,8 @@
         <tr>
           <th>no</th>
           <th>제목</th>
-          <th>아이디</th>
-          <th>날짜</th>
+          <th>작성자</th>
+          <th>작성일</th>
         </tr>
         <tr id="lst" v-for="(row, idx) in list" :key="idx">
           <td>{{ no - idx }}</td>
