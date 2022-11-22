@@ -1,26 +1,26 @@
 <template>
   <div>
-    <h2>누구랑 웃지?</h2>
+    <h2>나는 이걸로 웃지</h2>
 
     <div class="listWrap">
       <table class="tbList">
         <colgroup>
-          <col width="6%" />
           <col width="*" />
+          <col width="30%" />
           <col width="10%" />
           <col width="15%" />
         </colgroup>
         <tr>
-          <th>no</th>
           <th>제목</th>
+          <th>영상</th>
           <th>작성자</th>
           <th>작성일</th>
         </tr>
         <tr id="lst" v-for="(row, idx) in list" :key="idx">
-          <td>{{ no - idx }}</td>
           <td class="txt_left">
             <a href="javascript:;" @click="godetail(`${row.id}`)">{{ row.title }}</a>
           </td>
+          <td>{{row.movie_id}}</td>
           <td>{{ row.user }}</td>
           <td>{{ row.created_at.substring(0, 10) }}</td>
         </tr>
@@ -73,7 +73,7 @@
 <script>
 import axios from "axios"
 export default {
-  name: "ArticleView",
+  name: "ReviewView",
   data() {
     return {
       body: "",
@@ -95,10 +95,10 @@ export default {
   },
   methods: {
     gocreate() {
-      this.$router.push({ name: "createarticle" })
+      this.$router.push({ name: "createreview" })
     },
     getlist() {
-      const url = "http://127.0.0.1:8000/api/v1/articles/"
+      const url = "http://127.0.0.1:8000/reviews/reviews/"
       axios({
         url: url,
         method: "get",
@@ -137,7 +137,7 @@ export default {
       }
     },
     godetail(id) {
-      this.$router.push({name : 'articledetail', params : {id}})
+      this.$router.push({name : 'reviewdetail', params : {id}})
     }
   },
   created() {

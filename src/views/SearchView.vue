@@ -30,7 +30,7 @@ export default {
   },
   data() {
     return {
-      inputdata: null,
+      inputdata: '',
       ressearch: [],
     }
   },
@@ -63,6 +63,9 @@ export default {
         .catch((err) => {
           console.log(err)
         })
+  },
+  created() {
+    this.search()
   }
 }
 </script>

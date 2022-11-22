@@ -1,61 +1,79 @@
 <template>
   <div>
-    <h1>인기 차트</h1>
-    <MovieRankList />
+    <!-- <div
+      id="scroll"
+      style="
+        background-color: #a3e1f4;
+        min-width: 100vw;
+        height: 100vw;
+        margin-left: calc(-50vw + 50%);
+      "
+    >
+      <img
+        src="../assets/logo_full.png"
+        alt=""
+        style="width: 500px"
+        @click="doanimate($event.target)"
+      />
+    </div> -->
+    <div>
+      <h1>인기 차트</h1>
+      <MovieRankList />
 
-    <div class="multi">
-      <div>
-        <h2>최신 게시물</h2>
+      <div class="multi">
+        <div>
+          <h2>최신 게시물</h2>
 
-        <div class="listWrap">
-          <table class="tbList">
-            <colgroup>
-              <col width="*" />
-              <col width="10%" />
-            </colgroup>
-            <tr>
-              <th>제목</th>
-              <th>작성자</th>
-            </tr>
-            <tr id="lst" v-for="(row, idx) in articlelist" :key="idx">
-              <td class="txt_left">
-                <a href="javascript:;" @click="godetail(`${row.id}`)">{{
-                  row.title
-                }}</a>
-              </td>
-              <td>{{ row.user }}</td>
-            </tr>
-            <tr v-if="articlelist.length == 0">
-              <td colspan="2">데이터가 없습니다.</td>
-            </tr>
-          </table>
+          <div class="listWrap">
+            <table class="tbList">
+              <colgroup>
+                <col width="*" />
+                <col width="10%" />
+              </colgroup>
+              <tr>
+                <th>제목</th>
+                <th>작성자</th>
+              </tr>
+              <tr id="lst" v-for="(row, idx) in articlelist" :key="idx">
+                <td class="txt_left">
+                  <a href="javascript:;" @click="godetail(`${row.id}`)">{{
+                    row.title
+                  }}</a>
+                </td>
+                <td>{{ row.user }}</td>
+              </tr>
+              <tr v-if="articlelist.length == 0">
+                <td colspan="2">데이터가 없습니다.</td>
+              </tr>
+            </table>
+          </div>
         </div>
-      </div>
 
-      <div>
-        <h2>인기 리뷰</h2>
-        <div class="listWrap">
-          <table class="tbList">
-            <colgroup>
-              <col width="*" />
-              <col width="10%" />
-            </colgroup>
-            <tr>
-              <th>제목</th>
-              <th>작성자</th>
-            </tr>
-            <tr id="lst" v-for="(row, idx) in articlelist" :key="idx">
-              <td class="txt_left">
-                <a href="javascript:;" @click="godetail(`${row.id}`)">{{
-                  row.title
-                }}</a>
-              </td>
-              <td>{{ row.user }}</td>
-            </tr>
-            <tr v-if="articlelist.length == 0">
-              <td colspan="2">데이터가 없습니다.</td>
-            </tr>
-          </table>
+        <div>
+          <h2>인기 리뷰</h2>
+          <div class="listWrap">
+            <table class="tbList">
+              <colgroup>
+                <col width="*" />
+                <col width="10%" />
+              </colgroup>
+              <tr>
+                <th>제목</th>
+                <th>작성자</th>
+              </tr>
+              <tr id="lst" v-for="(row, idx) in reviewlist" :key="idx">
+                <td class="txt_left">
+                  <a href="javascript:;" @click="goreviewdetail(`${row.id}`)">{{
+                    row.title
+                  }}</a>
+                </td>
+                <td>{{ row.user }}</td>
+              </tr>
+              <tr v-if="reviewlist.length == 0">
+                <td colspan="2">데이터가 없습니다.</td>
+              </tr>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -74,6 +92,7 @@ export default {
   data() {
     return {
       articlelist: [],
+      reviewlist : [],
     }
   },
   methods: {
@@ -92,11 +111,38 @@ export default {
         })
     },
     godetail(id) {
-      this.$router.push({name : 'articledetail', params : {id}})
-    }
+      this.$router.push({ name: "articledetail", params: { id } })
+    },
+    goreviewdetail(id) {
+      this.$router.push({ name: "reviewdetail", params: { id } })
+    },
+    doanimate(target) {
+      console.log(target)
+      target.setAttribute(
+        "style",
+        "animation : slide-out-bck-top 1s cubic-bezier(0.550, 0.085, 0.680, 0.530); width:500px"
+      )
+      //target.animation = "slide-out-bck-top"
+      // 1s cubic-bezier(0.550, 0.085, 0.680, 0.530)
+    },
+    getreview() {
+      const url = "http://127.0.0.1:8000/reviews/reviews/"
+      axios({
+        url: url,
+        method: "get",
+      })
+        .then((res) => {
+          this.reviewlist = res.data.slice(0, 5)
+          console.log(this.reviewlist)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
   },
   created() {
     this.getarticle()
+    this.getreview()
   },
 }
 </script>
@@ -107,13 +153,11 @@ export default {
   column-gap: 50px;
   column-rule: 1px dotted black;
   text-align: center;
-
   margin-top: 50px;
 }
 a {
   text-decoration: none !important;
   color: black !important;
-  
 }
 table {
   width: 100%;
@@ -178,5 +222,20 @@ table {
 
 td {
   font-family: cafeair;
+}
+
+/* #scroll img {
+  animation: slide-out-bck-top 1s cubic-bezier(0.550, 0.085, 0.680, 0.530);
+} */
+
+@keyframes slide-out-bck-top {
+  0% {
+    transform: translateZ(1) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateZ(-1100px) translateY(-1000px);
+    opacity: 0;
+  }
 }
 </style>

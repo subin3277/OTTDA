@@ -1,6 +1,6 @@
 <template>
   <div id="container">
-    <h2>게시물</h2>
+    <h2>리뷰 등록</h2>
     <div class="AddWrap">
       <form>
         <table class="tbAdd">
@@ -11,6 +11,14 @@
           <tr>
             <th>제목</th>
             <td><input type="text" v-model="subject" ref="subject" /></td>
+          </tr>
+          <tr>
+            <th>별점</th>
+            <td><star-rating :increment="0.5" v-model="star"></star-rating></td>
+          </tr>
+          <tr>
+            <th>영화</th>
+            <td><input type="text" v-model="movie" /></td>
           </tr>
           <tr>
             <th>내용</th>
@@ -29,12 +37,20 @@
 
 <script>
 import axios from 'axios'
+import StarRating from 'vue-star-rating'
+
 export default {
-  name: "CreateArticle",
+  name: "CreateReview",
+  components : {
+    StarRating
+  },
   data() {
     return {
       subject : '',
-      cont : ''
+      cont : '',
+      movie : '',
+      id : '',
+      star : '',
     }
   },
   methods : {
@@ -42,19 +58,22 @@ export default {
       this.$router.push({name:'article'})
     },
     createarticle() {
-      const url = "http://127.0.0.1:8000/api/v1/articles/"
+      const url = "http://127.0.0.1:8000/reviews/reviews/"
       axios({
         url : url,
         method : 'post',
         data : {
           'title' : this.subject,
           'content' : this.cont,
-          'user' : 1
+          'user' : 1,
+          'movie_id' : this.id,
+          'star' : this.star
         }
       })
       .then(() => {
+        console.log(this.star)
         alert('게시물이 등록되었습니다.')
-        this.$router.push({name:'article'})
+        this.$router.push({name:'review'})
         this.subject = ''
         this.content = ''
       })
@@ -62,6 +81,10 @@ export default {
         console.log(err)
       })
     }
+  },
+  created() {
+    this.movie = this.$route.params.title
+    this.id = this.$route.params.id
   }
 }
 </script>

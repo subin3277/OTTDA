@@ -14,12 +14,17 @@
     <p v-if="!outtlist"> {{message}} </p>
     <DetailOTTList v-for="(ott, idx) in ottlist" :key=idx :ottlst="ott"/>
     
+    <h2 style="margin-top : 30px">리뷰</h2>
+    <div @click="gocreatereview">리뷰 작성하기</div>
+    <ReviewListItem/>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import DetailOTTList from '../components/DetailOTTList.vue'
+import ReviewListItem from '../components/ReviewItem.vue'
+
 export default {
   name: "SearchView",
   data() {
@@ -31,7 +36,8 @@ export default {
     }
   },
   components: {
-    DetailOTTList
+    DetailOTTList,
+    ReviewListItem
   },
   methods : {
     getOTT(id, type){
@@ -76,6 +82,22 @@ export default {
       .catch((err) => {
         console.log(err)
       })
+    },
+    gocreatereview(){
+      let data = {}
+      if(this.type === 'movie'){
+        data = {
+          id : this.detail.movie_id,
+          title : this.detail.title,
+        }
+      }
+      else {
+        data = {
+          id : this.detail.tv_id,
+          title : this.detail.name,
+        }
+      }
+      this.$router.push({name:'createreview', params:data})
     }
   },
   created() {

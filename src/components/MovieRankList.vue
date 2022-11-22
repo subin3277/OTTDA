@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h3 style="margin:20px">Movie</h3>
     <b-carousel
       id="carousel-1"
       :interval="4000"
@@ -21,6 +22,7 @@
 
     <br>
 
+    <h3 style="margin:20px">TV</h3>
     <b-carousel
       :interval="4000"
       controls

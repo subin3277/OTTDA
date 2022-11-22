@@ -22,6 +22,14 @@
             <td>{{ detail.created_at.substring(0, 10) }}</td>
           </tr>
           <tr>
+            <th>영상</th>
+            <td>{{ detail.movie_id }}</td>
+          </tr>
+          <tr>
+            <th>별점</th>
+            <td>{{ detail.star }}</td>
+          </tr>
+          <tr>
             <th>내용</th>
             <td class="txt_cont" v-html="detail.content"></td>
           </tr>
@@ -55,7 +63,7 @@ import axios from "axios"
 import ArticleRecommentItem from "@/components/ArticleRecommentItem"
 
 export default {
-  name: "ArticleDetailView",
+  name: "ReviewDetailView",
   components : {
     ArticleRecommentItem,
   },
@@ -64,19 +72,19 @@ export default {
       detail: [],
       inputdata: "",
       num: 0,
-      comment_count : 0,
+      comment_count : 0
     }
   },
   methods: {
     getdetail(id) {
-      const url = "http://127.0.0.1:8000/api/v1/articles/"
+      const url = "http://127.0.0.1:8000/reviews/reviews/"
       axios({
         url: url + id,
         method: "get",
       })
         .then((res) => {
           this.detail = res.data
-          if (this.detail.comment_count !== null) {
+          if (this.detail.comment_count != null) {
             this.comment_count = this.detail.comment_count
           }
         })
@@ -85,7 +93,7 @@ export default {
         })
     },
     createcomment(id) {
-      const url = "http://127.0.0.1:8000/api/v1/articles/"
+      const url = "http://127.0.0.1:8000/reviews/reviews/"
       if (this.inputdata !== "") {
         axios({
           url: url + id + "/comments/",
@@ -108,9 +116,6 @@ export default {
         alert("댓글을 입력해주세요.")
       }
     },
-    showrecoment() {
-
-    }
   },
   mounted() {
     this.getdetail(this.$route.params.id)
