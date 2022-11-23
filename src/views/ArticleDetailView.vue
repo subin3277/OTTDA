@@ -15,7 +15,7 @@
           </tr>
           <tr>
             <th>작성자</th>
-            <td>{{ detail.user }}</td>
+            <td>{{ detail.user_nickname }}</td>
           </tr>
           <tr>
             <th>작성일</th>
@@ -92,8 +92,11 @@ export default {
           method: "post",
           data: {
             content: this.inputdata,
-            user : 1
+            user : this.$store.state.user.id
           },
+          headers : {
+            Authorization: `Bearer ${this.$store.state.user.token}`
+          }
         })
           .then((res) => {
             console.log(res)

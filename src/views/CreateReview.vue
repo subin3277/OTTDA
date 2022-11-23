@@ -65,9 +65,12 @@ export default {
         data : {
           'title' : this.subject,
           'content' : this.cont,
-          'user' : 1,
+          'user' : this.$store.state.user.id,
           'movie_id' : this.id,
           'star' : this.star
+        },
+        headers : {
+          Authorization : `Bearer ${this.$store.state.user.token}`
         }
       })
       .then(() => {

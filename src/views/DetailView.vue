@@ -16,7 +16,13 @@
     
     <h2 style="margin-top : 30px">리뷰</h2>
     <div @click="gocreatereview">리뷰 작성하기</div>
-    <ReviewListItem/>
+    
+    <div id="review">
+        <ReviewListItem v-for="(review, idx) in reviewlist" :key="idx" :review="review"/>
+    </div>
+
+    
+    
   </div>
 </template>
 
@@ -33,6 +39,7 @@ export default {
       message : "시청가능한 OTT가 없습니다!",
       detail : null,
       type : null,
+      reviewlist : null,
     }
   },
   components: {
@@ -52,7 +59,7 @@ export default {
       }
       axios({
         url: url+id+'/',
-        method : 'get' 
+        method : 'get',
       })
       .then((res) => {
         this.ottlist = res.data
@@ -98,16 +105,43 @@ export default {
         }
       }
       this.$router.push({name:'createreview', params:data})
-    }
+    },
+    getreview(id){
+      const url = "http://127.0.0.1:8000/reviews/reviewsearch/"
+      axios({
+        url : url + id,
+        method : 'get',
+        headers : {
+          Authorization : `Bearer ${this.$store.state.user.token}`
+        }
+      })
+      .then((res) => {
+        this.reviewlist = res.data
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    },
   },
   created() {
     this.getOTT(this.$route.params.id, this.$route.params.media_type)
     this.getDetail(this.$route.params.id, this.$route.params.media_type)
+    this.getreview(this.$route.params.id)
   }
 }
 </script>
 
 <style>
+/* #wrap {
+  display: flex;
+}
+*/
+#review {
+  display: flex;
+  flex-direction: row;
+  overflow: scroll;
+} 
+
 #detail_description{
   display: flex;
   justify-content: flex-start;

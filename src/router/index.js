@@ -69,7 +69,7 @@ const routes = [
     component: ArticleView,
   },
   {
-    path: "/reviews/detail",
+    path: "/reviews/create",
     name: "createreview",
     component: CreateReviewView,
   },

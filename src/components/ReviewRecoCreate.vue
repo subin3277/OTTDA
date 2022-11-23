@@ -31,8 +31,11 @@ export default {
         method: "post",
         data: {
           content: this.inputdata,
-          user: 1, //바꿔야함!!!!!!!!!!
+          user: this.$store.state.user.id
         },
+        headers : {
+          Authorization: `Bearer ${this.$store.state.user.token}`
+        }
       })
         .then(() => {
           this.$parent.getrecomment()

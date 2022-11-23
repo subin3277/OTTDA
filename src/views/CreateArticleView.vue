@@ -47,9 +47,9 @@ export default {
         url : url,
         method : 'post',
         data : {
-          'title' : this.subject,
-          'content' : this.cont,
-          'user' : 1
+          title : this.subject,
+          content : this.cont,
+          user : this.$store.state.user.id
         }
       })
       .then(() => {

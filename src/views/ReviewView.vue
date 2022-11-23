@@ -21,7 +21,7 @@
             <a href="javascript:;" @click="godetail(`${row.id}`)">{{ row.title }}</a>
           </td>
           <td>{{row.movie_id}}</td>
-          <td>{{ row.user }}</td>
+          <td>{{ row.user_nickname }}</td>
           <td>{{ row.created_at.substring(0, 10) }}</td>
         </tr>
         <tr v-if="list.length == 0">
@@ -104,7 +104,7 @@ export default {
         method: "get",
       })
         .then((res) => {
-          this.list = res.data.slice((this.page - 1) * 10, this.page * 10)
+          this.list = res.data.reverse().slice((this.page - 1) * 10, this.page * 10)
           console.log(this.list)
           this.body = {
             // 데이터 전송

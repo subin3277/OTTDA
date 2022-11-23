@@ -1,7 +1,7 @@
 <template>
   <div>
-    <th style="width: 10%">{{ comment.user }}</th>
-    <td style="width: 90%">
+    <th style="width: 15%">{{ comment.user_nickname }}</th>
+    <td style="width: 85%">
       <div>
         {{ comment.content }}
         <img src="../assets/back-arrow.png" style="width:20px" @click="recommnetcreate">
@@ -10,11 +10,11 @@
       <div class="listWrap">
         <table class="tbList">
           <colgroup>
-            <col width = "10%"/>
+            <col width = "30%"/>
             <col width='*'/>
           </colgroup>
           <tr class="comment-list-item" v-for="(lst, idx) in recomment" :key="idx">
-            <td>{{ lst.user }}</td>
+            <td>{{ lst.user_nickname }}</td>
             <td>{{ lst.content }}</td>
           </tr>
         </table>
@@ -52,6 +52,9 @@ export default {
       axios({
         url: url + this.comment.id,
         method: "get",
+        headers : {
+          Authorization: `Bearer ${this.$store.state.user.token}`
+        }
       })
         .then((res) => {
           this.recomment = res.data.recomment_set
