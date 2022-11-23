@@ -28,38 +28,48 @@ export default {
     },
     login(){
       const url = "http://127.0.0.1:8000/accounts/auth/"
-      const data = {
-          login_id : this.id,
-          password : this.password
-        }
-      axios({
-        url : url,
-        method : 'POST',
-        data : data
-      })
-      .then((res) =>{
-        console.log(res.data)
-        if (res.data.message === "login success"){
-          alert('로그인 되었습니다.')
-          const store = {
-            id : res.data.user.id,
-            nickname : res.data.user.nickname,
-            token : res.data.token.access
+      if(this.id == ""){
+        alert('아이디를 입력해주세요')
+      }
+      else if(this.password == "") {
+        alert('비밀번호를 입력해주세요')
+      }
+      else {
+        const data = {
+            login_id : this.id,
+            password : this.password
           }
-          this.$store.dispatch('login', store)
-          this.$router.push({name : 'main'})
-        }
-        else {
-          alert('로그인에 실패하였습니다.')
-        }
-        
-      })
-      .catch((err)=> {
-        console.log(err)
-      })
+        axios({
+          url : url,
+          method : 'POST',
+          data : data
+        })
+        .then((res) =>{
+          console.log(res.data)
+          if (res.data.message === "login success"){
+            alert('로그인 되었습니다.')
+            const store = {
+              id : res.data.user.id,
+              nickname : res.data.user.nickname,
+              token : res.data.token.access
+            }
+            this.$store.dispatch('login', store)
+            this.$router.push({name : 'main'})
+          }
+          
+        })
+        .catch((err)=> {
+          alert('아이디와 비밀번호를 확인해주세요.')
+          console.log(err)
+        })
+      }
     }
   },
 }
 </script>
 
-<style></style>
+<style>
+input[type=password] {
+  font-family: "굴림";
+}
+</style>

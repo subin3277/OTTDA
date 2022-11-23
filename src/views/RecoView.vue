@@ -18,7 +18,7 @@
       <input type="checkbox" id="p_2" class="checkbox"/> <label for="p_2">2</label>
       <input type="checkbox" id="p_4" class="checkbox"/> <label for="p_4">4</label>
     </p>
-    <button>추천받기</button>
+    <button @click="getreco">추천받기</button>
   </div>
 </template>
 
@@ -37,9 +37,27 @@ export default {
       searchlist : [],
       list : [],
       inputid : null,
+      inputtype : null,
     }
   },
   methods : {
+    getreco(){
+      console.log(this.searchlist)
+      const url = "http://127.0.0.1:8000/movies/al/"
+      axios({
+        url : url,
+        method : 'post',
+        data : {
+          movie : this.searchlist
+        }
+      })
+      .then((res) => {
+        console.log(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    },
     getData() {
       const URL = "http://127.0.0.1:8000/movies/search/"
       axios({
@@ -54,7 +72,8 @@ export default {
         })
     },
     pluslist() {
-      const tmp = {id : this.inputid, title : this.inputdata}
+      console.log(this.list)
+      const tmp = {id : this.inputid, title:this.inputdata, media_type : this.inputtype}
       this.searchlist.push(tmp)
       this.inputdata = null
       this.inputid = null
@@ -84,6 +103,7 @@ export default {
             const $li = document.createElement("li")
             $li.textContent = `${lst.title}`
             $li.setAttribute('id', lst.multi_id)
+            $li.className = lst.media_type
             $li.style.border = "0.5px solid black"
             $ul.append($li)
         }
@@ -124,6 +144,7 @@ export default {
           keyword.value = target.textContent
           this.inputdata = target.textContent
           this.inputid = target.id
+          this.inputtype =target.className.split(' ')[0]
       }
     },
   }

@@ -73,6 +73,9 @@ export default {
       axios({
         url: url + id,
         method: "get",
+        headers : {
+          Authorization : `Bearer ${this.$store.state.user.token}`
+        }
       })
         .then((res) => {
           this.detail = res.data
@@ -81,6 +84,7 @@ export default {
           }
         })
         .catch((err) => {
+          alert('로그인이 필요합니다')
           console.log(err)
         })
     },

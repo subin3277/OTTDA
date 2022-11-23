@@ -8,8 +8,15 @@
       <router-link to="/">
         <img src="../src/assets/logo_main.png" alt="logo" width="80px" />
       </router-link>
-      <span class="flex-direction">
+      <span v-if="$store.state.user.token" style="margin-right:10px">
+        {{$store.state.user.nickname}}님 안녕하세요
+        <button id="button" >
+          <router-link to="/signin">로그아웃</router-link>
+        </button>
+      </span>
+      <span v-else class="flex-direction">
         <button id="button">
+          
           <router-link to="/signin">Sign In</router-link>
         </button>
         <button id="button" to="/signup">
@@ -45,6 +52,8 @@
     </footer>
   </div>
 </template>
+
+
 
 <style>
 #app {
