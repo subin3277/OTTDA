@@ -10,13 +10,12 @@
       </router-link>
       <span v-if="$store.state.user.token" style="margin-right:10px">
         {{$store.state.user.nickname}}님 안녕하세요
-        <button id="button" >
-          <router-link to="/signin">로그아웃</router-link>
+        <button id="button" @click="logout">
+          로그아웃
         </button>
       </span>
       <span v-else class="flex-direction">
         <button id="button">
-          
           <router-link to="/signin">Sign In</router-link>
         </button>
         <button id="button" to="/signup">
@@ -53,7 +52,17 @@
   </div>
 </template>
 
-
+<script>
+export default {
+  name: 'App',
+  methods : {
+    logout() {
+      this.$store.dispatch('logout')
+      this.$router.push({name : 'main'})
+    }
+  }
+}
+</script>
 
 <style>
 #app {

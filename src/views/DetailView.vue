@@ -6,7 +6,7 @@
         <h1 v-if="type==='movie'">{{detail.title}}</h1>
         <h1 v-else-if="type==='tv'">{{detail.name}}</h1>
         <div style="margin-bottom : 10px">
-          <star-rating v-model="star" read-only="true"></star-rating>
+          <star-rating v-model="star" :increment="0.5" read-only="true" style="width:350px"/>
         </div>
         <p>{{detail.overview}}</p>
         <p v-if="type==='movie'">개봉일 : {{detail.release_date}}</p>
@@ -45,6 +45,7 @@ export default {
       type : null,
       reviewlist : null,
       star : 0,
+      star_count : 0,
     }
   },
   components: {
@@ -54,22 +55,30 @@ export default {
   },
   methods : {
     getstar(id){
-      let url = "http://127.0.0.1:8000/movies/staraverage/"
+      // let url = "http://127.0.0.1:8000/movies/staraverage/"
+      let url = "http://52.196.3.18:8000/movies/staraverage/"
       axios({
         url:url + id+'/',
         method : 'get',
       })
       .then((res) => {
-        console.log(res)
-        this.star = res.data
+        this.star = res.data.star_avg
+        this.star_count = res.data.star_count
+        
       })
       .catch((err) => {
         console.log(err)
       })
     },
+    setstar() {
+      console.log("???????????")
+      var tmp = document.querySelector('.vue-star-rating-rating-text')
+      tmp.innerText = `${this.star}`+`(${this.star_count})`
+    },
     getOTT(id, type){
       console.log(id, type)
-      let url = "http://127.0.0.1:8000/movies/"
+      // let url = "http://127.0.0.1:8000/movies/"
+      let url = "http://52.196.3.18:8000/movies/"
       this.type = type
       if (type === 'movie') {
         url = url + 'movieprovider/' 
@@ -90,7 +99,8 @@ export default {
       })
     },
     getDetail(){
-      let url = "http://127.0.0.1:8000/movies/"
+      // let url = "http://127.0.0.1:8000/movies/"
+      let url = "http://52.196.3.18:8000/movies/"
       this.type = `${this.$route.params.media_type}`
       console.log(this.type)
       if (this.type === 'movie') {
@@ -130,7 +140,8 @@ export default {
       this.$router.push({name:'createreview', params:data})
     },
     getreview(id){
-      const url = "http://127.0.0.1:8000/reviews/reviewsearch/"
+      // const url = "http://127.0.0.1:8000/reviews/reviewsearch/"
+      const url = "http://52.196.3.18:8000/reviews/reviewsearch/"
       axios({
         url : url + id,
         method : 'get',
@@ -139,7 +150,7 @@ export default {
         }
       })
       .then((res) => {
-        this.reviewlist = res.data
+        this.reviewlist = res.data.reverse()
       })
       .catch((err) => {
         console.log(err)
@@ -151,6 +162,9 @@ export default {
     this.getDetail()
     this.getreview(this.$route.params.id)
     this.getstar(this.$route.params.id)
+  },
+  updated(){
+    this.setstar()
   }
 }
 </script>

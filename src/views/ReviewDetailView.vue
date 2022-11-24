@@ -23,7 +23,7 @@
           </tr>
           <tr>
             <th>영상</th>
-            <td>{{ detail.movie_id }}</td>
+            <td>{{ detail.movie_title }}</td>
           </tr>
           <tr>
             <th>별점</th>
@@ -83,7 +83,8 @@ export default {
   },
   methods: {
     getdetail(id) {
-      const url = "http://127.0.0.1:8000/reviews/reviews/"
+      // const url = "http://127.0.0.1:8000/reviews/reviews/"
+      const url = "http://52.196.3.18:8000/reviews/reviews/"
       axios({
         url: url + id + '/',
         method: "get",
@@ -102,7 +103,8 @@ export default {
         })
     },
     createcomment(id) {
-      const url = "http://127.0.0.1:8000/reviews/reviews/"
+      // const url = "http://127.0.0.1:8000/reviews/reviews/"
+      const url = "http://52.196.3.18:8000/reviews/reviews/"
       if (this.inputdata !== "") {
         axios({
           url: url + id + "/comments/",

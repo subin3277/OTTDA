@@ -36,7 +36,8 @@ export default {
   },
   methods: {
     search() {
-      const URL = "http://127.0.0.1:8000/movies/search/"
+      // const URL = "http://127.0.0.1:8000/movies/search/"
+      const URL = "http://52.196.3.18:8000/movies/search/"
       axios({
         url: URL + this.inputdata,
         method: "get",
@@ -51,7 +52,8 @@ export default {
     },
   },
   updated(){
-    const URL = "http://127.0.0.1:8000/movies/search/"
+    // const URL = "http://127.0.0.1:8000/movies/search/"
+    const URL = "http://52.196.3.18:8000/movies/search/"
       axios({
         url: URL + this.inputdata,
         method: "get",

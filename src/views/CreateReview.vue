@@ -18,7 +18,7 @@
           </tr>
           <tr>
             <th>영화</th>
-            <td><input type="text" v-model="movie" /></td>
+            <td><input type="text" v-model="movie" disabled="true" /></td>
           </tr>
           <tr>
             <th>내용</th>
@@ -36,60 +36,65 @@
 </template>
 
 <script>
-import axios from 'axios'
-import StarRating from 'vue-star-rating'
+import axios from "axios"
+import StarRating from "vue-star-rating"
 
 export default {
   name: "CreateReview",
-  components : {
-    StarRating
+  components: {
+    StarRating,
   },
   data() {
     return {
-      subject : '',
-      cont : '',
-      movie : '',
-      id : '',
-      star : '',
-      type : ''
+      subject: "",
+      cont: "",
+      movie: "",
+      id: "",
+      star: "",
+      type: "",
     }
   },
-  methods : {
-    golist(){
-      this.$router.push({name:'article'})
+  methods: {
+    golist() {
+      this.$router.push({ name: "article" })
     },
     createarticle() {
-      const url = "http://127.0.0.1:8000/reviews/reviews/"
+      // const url = "http://127.0.0.1:8000/reviews/reviews/"
+      const url = "http://52.196.3.18:8000/reviews/reviews/"
       axios({
-        url : url,
-        method : 'post',
-        data : {
-          'title' : this.subject,
-          'content' : this.cont,
-          'user' : this.$store.state.user.id,
-          'movie_id' : this.id,
-          'star' : this.star
+        url: url,
+        method: "post",
+        data: {
+          title: this.subject,
+          content: this.cont,
+          user: this.$store.state.user.id,
+          movie_title: this.movie,
+          star: this.star,
+          movie_id: this.id,
         },
-        headers : {
-          Authorization : `Bearer ${this.$store.state.user.token}`
-        }
+        headers: {
+          Authorization: `Bearer ${this.$store.state.user.token}`,
+        },
       })
-      .then(() => {
-        alert('게시물이 등록되었습니다.')
-        this.$router.push({name:'detail', params :{id:this.id, media_type:this.type}})
-        this.subject = ''
-        this.content = ''
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-    }
+        .then(() => {
+          alert("게시물이 등록되었습니다.")
+          this.$router.push({
+            name: "detail",
+            params: { id: this.id, media_type: this.type },
+          })
+          this.subject = ""
+          this.content = ""
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
   },
   created() {
     this.movie = this.$route.params.title
     this.id = this.$route.params.id
     this.type = this.$route.params.media_type
-  }
+  },
 }
 </script>
 

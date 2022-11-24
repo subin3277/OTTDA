@@ -12,13 +12,13 @@
       <!-- <button style="margin-left : 10px">검색</button> -->
     </div>
 
-    <p>
+    <!-- <p>
       시청 인원
       <input type="checkbox" id="p_1" class="checkbox"/> <label for="p_1">1</label>
       <input type="checkbox" id="p_2" class="checkbox"/> <label for="p_2">2</label>
       <input type="checkbox" id="p_4" class="checkbox"/> <label for="p_4">4</label>
-    </p>
-    <button @click="getreco">추천받기</button>
+    </p> -->
+    <button @click="getreco" style="margin:30px">추천받기</button>
 
     <h2 style="margin-top:20px">1인</h2>
     <hr>
@@ -59,7 +59,8 @@ export default {
   methods : {
     getreco(){
       console.log(this.searchlist)
-      const url = "http://127.0.0.1:8000/movies/al/"
+      // const url = "http://127.0.0.1:8000/movies/al/"
+      const url = "http://52.196.3.18:8000/movies/al/"
       axios({
         url : url,
         method : 'post',
@@ -70,14 +71,14 @@ export default {
       .then((res) => {
         this.ott = res.data
         this.ottlist = res.data.list
-        console.log(res.data)
       })
       .catch((err) => {
         console.log(err)
       })
     },
     getData() {
-      const URL = "http://127.0.0.1:8000/movies/search/"
+      // const URL = "http://127.0.0.1:8000/movies/search/"
+      const URL = "http://52.196.3.18:8000/movies/search/"
       axios({
         url: URL + this.inputdata,
         method: "get",
@@ -96,6 +97,15 @@ export default {
       this.inputdata = null
       this.inputid = null
       this.closeKeywords()
+    },
+    minuslist(title) {
+      let lst = []
+      for (var i in this.searchlist){
+        if (i.title !== title) {
+          lst.push(i)
+        }
+      }
+      this.searchlist = lst
     },
     closeKeywords(){
       const keywords = document.querySelector(".keywords")

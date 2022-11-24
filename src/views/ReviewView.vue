@@ -6,21 +6,18 @@
       <table class="tbList">
         <colgroup>
           <col width="*" />
-          <col width="30%" />
           <col width="10%" />
           <col width="15%" />
         </colgroup>
         <tr>
           <th>제목</th>
-          <th>영상</th>
           <th>작성자</th>
           <th>작성일</th>
         </tr>
         <tr id="lst" v-for="(row, idx) in list" :key="idx">
           <td class="txt_left">
-            <a href="javascript:;" @click="godetail(`${row.id}`)">{{ row.title }}</a>
+            <a href="javascript:;" @click="godetail(`${row.id}`)">[{{row.movie_title}}] {{ row.title }}</a>
           </td>
-          <td>{{row.movie_id}}</td>
           <td>{{ row.user_nickname }}</td>
           <td>{{ row.created_at.substring(0, 10) }}</td>
         </tr>
@@ -94,7 +91,8 @@ export default {
       this.$router.push({ name: "createreview" })
     },
     getlist() {
-      const url = "http://127.0.0.1:8000/reviews/reviews/"
+      // const url = "http://127.0.0.1:8000/reviews/reviews/"
+      const url = "http://52.196.3.18:8000/reviews/reviews/"
       axios({
         url: url,
         method: "get",

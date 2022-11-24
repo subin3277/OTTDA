@@ -13,7 +13,7 @@
         @click="godetail(review.id)"
       >
         <b-card-text style="font-family:cafeair">
-          <star-rating style="height:15px; margin:5px" v-model="star" read-only=true></star-rating>
+          <star-rating style="height:15px; margin:5px" :increment="0.5" v-model="star" read-only=true></star-rating>
           <span class="body">{{review.content}}</span>
         </b-card-text>
       </b-card>

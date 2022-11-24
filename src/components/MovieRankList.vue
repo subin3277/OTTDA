@@ -63,8 +63,8 @@ export default {
   },
   methods: {
     getMovieRank() {
-      // const url = "http://52.196.3.18:8000/movies/"
-      const url = "http://127.0.0.1:8000/movies/"
+      const url = "http://52.196.3.18:8000/movies/"
+      // const url = "http://127.0.0.1:8000/movies/"
       axios({
         url: url,
         method: "get",
@@ -79,8 +79,8 @@ export default {
     },
 
     getTvRank() {
-      // const url = "http://52.196.3.18:8000/movies/"
-      const url = "http://127.0.0.1:8000/movies/tv/"
+      const url = "http://52.196.3.18:8000/movies/"
+      // const url = "http://127.0.0.1:8000/movies/tv/"
       axios({
         url: url,
         method: "get",
