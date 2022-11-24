@@ -39,7 +39,7 @@
 
     <footer
       class="footer"
-      style="background: #fdf5c7; margin-top: 50px; padding: 5px"
+      style="background: #fdf5c7; margin-top: 50px; padding: 5px; height:100px"
     >
       SSAFY 8th
       <br />

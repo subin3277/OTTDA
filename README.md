@@ -22,6 +22,6 @@
 | Back | VSCode | Django | Python |
 | Server | AWS EC2 |  |  |
 | Design | Figma |  |  |
-## API DOCS
+
 
 ## 총평

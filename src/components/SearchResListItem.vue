@@ -45,7 +45,7 @@ export default {
     getOTT(id, type){
       console.log(id, type)
       // let url = "http://127.0.0.1:8000/movies/"
-      let url = "http://52.196.3.18:8000/movies/"
+      let url = `${this.$store.state.url}`+"movies/"
       this.type = type
       if (type === 'movie') {
         url = url + 'movieprovider/' 

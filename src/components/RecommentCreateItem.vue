@@ -26,7 +26,7 @@ export default {
   methods: {
     createrecomment() {
       // const url = "http://127.0.0.1:8000/api/v1/comments/"
-      const url = "http://52.196.3.18:8000/api/v1/comments/"
+      const url = `${this.$store.state.url}`+"api/v1/comments/"
       axios({
         url: url + this.commentid + "/recomments/",
         method: "post",

@@ -48,7 +48,7 @@ export default {
   methods: {
     getrecomment() {
       // const url = "http://127.0.0.1:8000/reviews/comments/"
-      const url = "http://52.196.3.18:8000/reviews/comments/"
+      const url = `${this.$store.state.url}`+"reviews/comments/"
       console.log(this.comment)
       axios({
         url: url + this.comment.id,

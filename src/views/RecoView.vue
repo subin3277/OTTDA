@@ -60,7 +60,7 @@ export default {
     getreco(){
       console.log(this.searchlist)
       // const url = "http://127.0.0.1:8000/movies/al/"
-      const url = "http://52.196.3.18:8000/movies/al/"
+      const url = `${this.$store.state.url}`+"movies/al/"
       axios({
         url : url,
         method : 'post',
@@ -78,7 +78,7 @@ export default {
     },
     getData() {
       // const URL = "http://127.0.0.1:8000/movies/search/"
-      const URL = "http://52.196.3.18:8000/movies/search/"
+      const URL = `${this.$store.state.url}`+"movies/search/"
       axios({
         url: URL + this.inputdata,
         method: "get",

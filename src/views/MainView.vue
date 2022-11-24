@@ -97,8 +97,8 @@ export default {
   },
   methods: {
     getarticle() {
-      // const url = "http://127.0.0.1:8000/api/v1/articles/"
-      const url = "http://52.196.3.18:8000/api/v1/articles/"
+      const url = `${this.$store.state.url}`+"api/v1/articles/"
+      // const url = "http://52.196.3.18:8000/api/v1/articles/"
       axios({
         url: url,
         method: "get",
@@ -127,8 +127,8 @@ export default {
       // 1s cubic-bezier(0.550, 0.085, 0.680, 0.530)
     },
     getreview() {
-      // const url = "http://127.0.0.1:8000/reviews/reviews/"
-      const url = "http://52.196.3.18:8000/reviews/reviews/"
+      const url = `${this.$store.state.url}`+"reviews/reviews/"
+      // const url = "http://52.196.3.18:8000/reviews/reviews/"
       axios({
         url: url,
         method: "get",

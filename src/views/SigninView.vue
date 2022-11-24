@@ -27,8 +27,8 @@ export default {
       this.$router.push({ name: "signup" })
     },
     login(){
-      // const url = "http://127.0.0.1:8000/accounts/auth/"
-      const url = "http://52.196.3.18:8000/accounts/auth/"
+      const url = `${this.$store.state.url}`+"accounts/auth/"
+      // const url = "http://52.196.3.18:8000/accounts/auth/"
       if(this.id == ""){
         alert('아이디를 입력해주세요')
       }

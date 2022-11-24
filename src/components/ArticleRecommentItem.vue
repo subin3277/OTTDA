@@ -72,7 +72,7 @@ export default {
   methods: {
     getrecomment() {
       // const url = "http://127.0.0.1:8000/api/v1/comments/"
-      const url = "http://52.196.3.18:8000/api/v1/comments/"
+      const url = `${this.$store.state.url}`+"api/v1/comments/"
       console.log(this.comment)
       axios({
         url: url + this.comment.id,
@@ -99,7 +99,7 @@ export default {
     },
     updatecomment(){
       // const url = "http://127.0.0.1:8000/api/v1/comments/"
-      const url = "http://52.196.3.18:8000/api/v1/comments/"
+      const url = `${this.$store.state.url}`+"api/v1/comments/"
       axios({
         url : url + this.comment.id + '/',
         method : 'PUT',
@@ -122,7 +122,7 @@ export default {
     },
     deletecomment() {
       // const url = "http://127.0.0.1:8000/api/v1/comments/"
-      const url = "http://52.196.3.18:8000/api/v1/comments/"
+      const url = `${this.$store.state.url}`+"api/v1/comments/"
       axios({
         url : url+this.comment.id,
         method : 'delete',
@@ -141,7 +141,7 @@ export default {
     },
     updaterecomment(){
       // const url = "http://127.0.0.1:8000/api/v1/recomments/"
-      const url = "http://52.196.3.18:8000/api/v1/recomments/"
+      const url = `${this.$store.state.url}`+"api/v1/recomments/"
       axios({
         url : url + this.comment.id + '/',
         method : 'PUT',
@@ -164,7 +164,7 @@ export default {
     },
     deleterecomment(){
       // const url = "http://127.0.0.1:8000/api/v1/recomments/"
-      const url = "http://52.196.3.18:8000/api/v1/recomments/"
+      const url = `${this.$store.state.url}`+"api/v1/recomments/"
       axios({
         url : url+this.recomment.id,
         method : 'delete',

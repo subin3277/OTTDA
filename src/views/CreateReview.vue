@@ -60,7 +60,7 @@ export default {
     },
     createarticle() {
       // const url = "http://127.0.0.1:8000/reviews/reviews/"
-      const url = "http://52.196.3.18:8000/reviews/reviews/"
+      const url = `${this.$store.state.url}`+"reviews/reviews/"
       axios({
         url: url,
         method: "post",

@@ -10,6 +10,8 @@ export default new Vuex.Store({
   ],
   state: {
     user : {},
+    url : "http://127.0.0.1:8000/" //로컬
+    // url : "http://52.196.3.18:8000/" 서버
   },
   getters: {
   },

@@ -77,8 +77,8 @@ export default {
         nicknamest.innerText = "닉네임을 입력해주세요"
       }
       if(this.id != '' && this.password != '' && this.checkpassword != '' && this.email != '' && this.nickname != '' && this.password === this.checkpassword){
-        // const url = "http://127.0.0.1:8000/accounts/register/"
-        const url = "http://52.196.3.18:8000/accounts/register/"
+        const url = `${this.$store.state.url}`+"accounts/register/"
+        // const url = "http://52.196.3.18:8000/accounts/register/"
         axios({
           url : url,
           method : 'post',

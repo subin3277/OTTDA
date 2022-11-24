@@ -56,7 +56,7 @@ export default {
   methods : {
     getstar(id){
       // let url = "http://127.0.0.1:8000/movies/staraverage/"
-      let url = "http://52.196.3.18:8000/movies/staraverage/"
+      let url = `${this.$store.state.url}`+"movies/staraverage/"
       axios({
         url:url + id+'/',
         method : 'get',
@@ -78,7 +78,7 @@ export default {
     getOTT(id, type){
       console.log(id, type)
       // let url = "http://127.0.0.1:8000/movies/"
-      let url = "http://52.196.3.18:8000/movies/"
+      let url = `${this.$store.state.url}`+"movies/"
       this.type = type
       if (type === 'movie') {
         url = url + 'movieprovider/' 
@@ -100,7 +100,7 @@ export default {
     },
     getDetail(){
       // let url = "http://127.0.0.1:8000/movies/"
-      let url = "http://52.196.3.18:8000/movies/"
+      let url = `${this.$store.state.url}`+"movies/"
       this.type = `${this.$route.params.media_type}`
       console.log(this.type)
       if (this.type === 'movie') {
@@ -141,7 +141,7 @@ export default {
     },
     getreview(id){
       // const url = "http://127.0.0.1:8000/reviews/reviewsearch/"
-      const url = "http://52.196.3.18:8000/reviews/reviewsearch/"
+      const url = `${this.$store.state.url}`+"reviews/reviewsearch/"
       axios({
         url : url + id,
         method : 'get',
