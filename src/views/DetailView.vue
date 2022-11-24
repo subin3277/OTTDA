@@ -2,11 +2,11 @@
   <div>
     <div id="detail_description">
       <img :src = "detail.poster_path" style="width:200px ; margin: 20px 10px 20px 30px">
-      <div style="margin-left:10px">
+      <div style="margin-left:10px; margin-top:20px">
         <h1 v-if="type==='movie'">{{detail.title}}</h1>
         <h1 v-else-if="type==='tv'">{{detail.name}}</h1>
         <p>{{detail.overview}}</p>
-        <p>{{detail.release_date}}</p>
+        <p>개봉일 : {{detail.release_date}}</p>
       </div>
     </div>
 
@@ -96,12 +96,14 @@ export default {
         data = {
           id : this.detail.movie_id,
           title : this.detail.title,
+          media_type : this.type
         }
       }
       else {
         data = {
           id : this.detail.tv_id,
           title : this.detail.name,
+          media_type : this.type
         }
       }
       this.$router.push({name:'createreview', params:data})

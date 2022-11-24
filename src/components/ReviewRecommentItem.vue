@@ -10,11 +10,11 @@
       <div class="listWrap">
         <table class="tbList">
           <colgroup>
-            <col width = "30%"/>
+            <col width = "70px"/>
             <col width='*'/>
           </colgroup>
           <tr class="comment-list-item" v-for="(lst, idx) in recomment" :key="idx">
-            <td>{{ lst.user_nickname }}</td>
+            <th>{{ lst.user_nickname }}</th>
             <td>{{ lst.content }}</td>
           </tr>
         </table>
@@ -74,4 +74,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+th {
+  border-top : 0px !important
+}
+</style>

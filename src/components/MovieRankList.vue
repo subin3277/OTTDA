@@ -7,7 +7,7 @@
       controls
       img-width="1024"
       img-height="480"
-      style="text-shadow: 1px 1px 2px #333;"
+      style="text-shadow: 1px 1px 2px #333; width :100% "
     >
       <b-carousel-slide v-for="i in 5" :key=i>
         <template #img>
@@ -106,7 +106,7 @@ export default {
   text-align: center;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .sr-only {

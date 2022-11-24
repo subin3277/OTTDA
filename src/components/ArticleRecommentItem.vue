@@ -10,7 +10,7 @@
       <div class="listWrap">
         <table class="tbList">
           <colgroup>
-            <col width = "30%"/>
+            <col width = "70px"/>
             <col width='*'/>
           </colgroup>
           <tr class="comment-list-item" v-for="(lst, idx) in recomment" :key="idx">

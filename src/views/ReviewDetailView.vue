@@ -27,7 +27,7 @@
           </tr>
           <tr>
             <th>별점</th>
-            <td>{{ detail.star }}</td>
+            <td><star-rating :increment="0.5" v-model="detail.star" read-only=true></star-rating></td>
           </tr>
           <tr>
             <th>내용</th>
@@ -65,11 +65,13 @@
 <script>
 import axios from "axios"
 import ReviewRecommentItem from "@/components/ReviewRecommentItem"
+import StarRating from 'vue-star-rating'
 
 export default {
   name: "ReviewDetailView",
   components: {
     ReviewRecommentItem,
+    StarRating
   },
   data() {
     return {
@@ -85,6 +87,9 @@ export default {
       axios({
         url: url + id + '/',
         method: "get",
+        headers : {
+          Authorization : `Bearer ${this.$store.state.user.token}`
+        }
       })
         .then((res) => {
           this.detail = res.data

@@ -51,6 +51,7 @@ export default {
       movie : '',
       id : '',
       star : '',
+      type : ''
     }
   },
   methods : {
@@ -74,9 +75,8 @@ export default {
         }
       })
       .then(() => {
-        console.log(this.star)
         alert('게시물이 등록되었습니다.')
-        this.$router.push({name:'review'})
+        this.$router.push({name:'detail', params :{id:this.id, media_type:this.type}})
         this.subject = ''
         this.content = ''
       })
@@ -88,6 +88,7 @@ export default {
   created() {
     this.movie = this.$route.params.title
     this.id = this.$route.params.id
+    this.type = this.$route.params.media_type
   }
 }
 </script>

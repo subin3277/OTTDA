@@ -18,7 +18,7 @@
     </div> -->
     <div>
       <h1>인기 차트</h1>
-      <MovieRankList />
+      <MovieRankList style="width:100%"/>
 
       <div class="multi">
         <div>
@@ -28,7 +28,7 @@
             <table class="tbList">
               <colgroup>
                 <col width="*" />
-                <col width="10%" />
+                <col width="15%" />
               </colgroup>
               <tr>
                 <th>제목</th>
@@ -40,7 +40,7 @@
                     row.title
                   }}</a>
                 </td>
-                <td>{{ row.user }}</td>
+                <td>{{ row.user_nickname }}</td>
               </tr>
               <tr v-if="articlelist.length == 0">
                 <td colspan="2">데이터가 없습니다.</td>
@@ -55,7 +55,7 @@
             <table class="tbList">
               <colgroup>
                 <col width="*" />
-                <col width="10%" />
+                <col width="15%" />
               </colgroup>
               <tr>
                 <th>제목</th>
@@ -67,7 +67,7 @@
                     row.title
                   }}</a>
                 </td>
-                <td>{{ row.user }}</td>
+                <td>{{ row.user_nickname }}</td>
               </tr>
               <tr v-if="reviewlist.length == 0">
                 <td colspan="2">데이터가 없습니다.</td>
@@ -103,7 +103,7 @@ export default {
         method: "get",
       })
         .then((res) => {
-          this.articlelist = res.data.slice(0, 5)
+          this.articlelist = res.data.reverse().slice(0, 5)
           console.log(this.articlelist)
         })
         .catch((err) => {
@@ -132,7 +132,7 @@ export default {
         method: "get",
       })
         .then((res) => {
-          this.reviewlist = res.data.slice(0, 5)
+          this.reviewlist = res.data.reverse().slice(0, 5)
           console.log(this.reviewlist)
         })
         .catch((err) => {
@@ -222,6 +222,14 @@ table {
 
 td {
   font-family: cafeair;
+}
+
+td a {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 /* #scroll img {
