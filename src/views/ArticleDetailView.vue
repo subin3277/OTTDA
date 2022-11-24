@@ -41,14 +41,16 @@
             </div>
             <ArticleRecommentItem v-for="(comment, idx) in detail.comment_set" :key="idx" :comment="comment"/>
 
-            <input type="checkbox" value="secret"> 비밀댓글
+            <div>
+              <input type="checkbox" id="secret" @input="onclick"> 비밀댓글
+            </div>
             <input
               type="text"
               style="width: 80%"
               value="댓글을 입력하세요"
               v-model="inputdata"
             />
-            <button @click.prevent="createcomment(detail.id)">등록</button>
+            <button @click="createcomment(detail.id)">등록</button>
           </tr>
         </table>
       </form>
@@ -75,9 +77,14 @@ export default {
       inputdata: "",
       num: 0,
       comment_count : 0,
+      check : false,
     }
   },
   methods: {
+    onclick(){
+      const checkbox = document.getElementById('secret')
+      this.check = checkbox.checked
+    },
     getdetail(id) {
       // const url = "http://127.0.0.1:8000/api/v1/articles/"
       const url = `${this.$store.state.url}`+"api/v1/articles/"
@@ -108,7 +115,8 @@ export default {
           method: "post",
           data: {
             content: this.inputdata,
-            user : this.$store.state.user.id
+            user : this.$store.state.user.id,
+            secret : this.check
           },
           headers : {
             Authorization: `Bearer ${this.$store.state.user.token}`
