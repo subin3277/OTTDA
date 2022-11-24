@@ -41,9 +41,10 @@
             </div>
             <ArticleRecommentItem v-for="(comment, idx) in detail.comment_set" :key="idx" :comment="comment"/>
 
+            <input type="checkbox" value="secret"> 비밀댓글
             <input
               type="text"
-              style="width: 90%"
+              style="width: 80%"
               value="댓글을 입력하세요"
               v-model="inputdata"
             />

@@ -33,6 +33,15 @@
             <th>내용</th>
             <td class="txt_cont" v-html="detail.content"></td>
           </tr>
+          <tr v-if="this.$store.state.user.id === detail.user">
+            <th></th>
+            <td style = "text-align:right !important">
+              <div>
+                <span style="margin-right : 20px" @click="updatereview">수정</span>
+                <span style="margin-right : 20px" @click="deletereview">삭제</span>
+              </div>
+            </td>
+          </tr>
           <tr>
             <th>댓글</th>
             <div>
@@ -113,6 +122,9 @@ export default {
             content: this.inputdata,
             user: this.$store.state.user.id,
           },
+          headers : {
+          Authorization : `Bearer ${this.$store.state.user.token}`
+          }
         })
           .then((res) => {
             console.log(res)
@@ -127,8 +139,29 @@ export default {
         alert("댓글을 입력해주세요.")
       }
     },
+    updatereview(){
+      this.$router.push({name : 'updatereview', params : {detail:this.detail}})
+    },
+    deletereview(){
+      const url = `${this.$store.state.url}`+"reviews/reviews/"
+      axios({
+        url : url + this.detail.id + '/',
+        method : 'delete',
+        headers : {
+          Authorization : `Bearer ${this.$store.state.user.token}`
+        }
+      })
+      .then(() => {
+        alert("리뷰가 삭제되었습니다.")
+        this.$router.push({name : 'review'})
+      })
+      .catch((err)=>{
+        console.log(err)
+        alert("게시물 삭제에 실패하였습니다.")
+      })
+    }
   },
-  mounted() {
+  created() {
     this.getdetail(this.$route.params.id)
   },
 }

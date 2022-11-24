@@ -30,7 +30,7 @@
 
     <div class="btnWrap">
       <a href="javascript:;" @click="golist" class="btn">목록</a>
-      <a href="javascript:;" @click="createarticle" class="btnAdd btn">등록</a>
+      <a href="javascript:;" @click="createreview" class="btnAdd btn">등록</a>
     </div>
   </div>
 </template>
@@ -52,18 +52,19 @@ export default {
       id: "",
       star: "",
       type: "",
+      detail : [],
     }
   },
   methods: {
     golist() {
       this.$router.push({ name: "review" })
     },
-    createarticle() {
+    createreview() {
       // const url = "http://127.0.0.1:8000/reviews/reviews/"
       const url = `${this.$store.state.url}`+"reviews/reviews/"
       axios({
-        url: url,
-        method: "post",
+        url: url + this.id+'/',
+        method: "put",
         data: {
           title: this.subject,
           content: this.cont,
@@ -77,23 +78,25 @@ export default {
         },
       })
         .then(() => {
-          alert("게시물이 등록되었습니다.")
+          alert("게시물이 수정되었습니다.")
           this.$router.push({
-            name: "detail",
-            params: { id: this.id, media_type: this.type },
+            name: "reviewdetail",
+            params: { id: this.id },
           })
-          this.subject = ""
-          this.content = ""
         })
         .catch((err) => {
           console.log(err)
+          alert('게시글 수정에 실패하였습니다.')
         })
     },
   },
   created() {
-    this.movie = this.$route.params.title
-    this.id = this.$route.params.id
-    this.type = this.$route.params.media_type
+    this.detail = this.$route.params.detail
+    this.movie = this.detail.movie_title
+    this.id = this.detail.id
+    this.star = this.detail.star
+    this.subject = this.detail.title
+    this.cont = this.detail.content
   },
 }
 </script>

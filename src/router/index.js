@@ -14,6 +14,7 @@ import ReviewView from "../views/ReviewView.vue"
 import ReviewDetailView from "../views/ReviewDetailView.vue"
 import CreateReviewView from "../views/CreateReview.vue"
 import UpdateArticle from "../views/UpdateArticle.vue"
+import UpdateReview from "../views/UpdateReview.vue"
 
 Vue.use(VueRouter)
 
@@ -75,6 +76,11 @@ const routes = [
     component: UpdateArticle,
   },
   {
+    path: "/review",
+    name: "review",
+    component: ReviewView,
+  },
+  {
     path: "/reviews/create",
     name: "createreview",
     component: CreateReviewView,
@@ -85,9 +91,9 @@ const routes = [
     component: ReviewDetailView,
   },
   {
-    path: "/review",
-    name: "review",
-    component: ReviewView,
+    path: "/reviews/update/:id",
+    name: "updatereview",
+    component: UpdateReview,
   },
 ]
 
