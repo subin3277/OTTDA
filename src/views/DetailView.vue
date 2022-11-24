@@ -5,8 +5,11 @@
       <div style="margin-left:10px; margin-top:20px">
         <h1 v-if="type==='movie'">{{detail.title}}</h1>
         <h1 v-else-if="type==='tv'">{{detail.name}}</h1>
+        <div style="margin-bottom : 10px">
+          <star-rating v-model="star" read-only="true"></star-rating>
+        </div>
         <p>{{detail.overview}}</p>
-        <p>개봉일 : {{detail.release_date}}</p>
+        <p v-if="type==='movie'">개봉일 : {{detail.release_date}}</p>
       </div>
     </div>
 
@@ -30,6 +33,7 @@
 import axios from 'axios'
 import DetailOTTList from '../components/DetailOTTList.vue'
 import ReviewListItem from '../components/ReviewItem.vue'
+import StarRating from 'vue-star-rating'
 
 export default {
   name: "SearchView",
@@ -40,13 +44,29 @@ export default {
       detail : null,
       type : null,
       reviewlist : null,
+      star : 0,
     }
   },
   components: {
     DetailOTTList,
-    ReviewListItem
+    ReviewListItem,
+    StarRating
   },
   methods : {
+    getstar(id){
+      let url = "http://127.0.0.1:8000/movies/staraverage/"
+      axios({
+        url:url + id+'/',
+        method : 'get',
+      })
+      .then((res) => {
+        console.log(res)
+        this.star = res.data
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    },
     getOTT(id, type){
       console.log(id, type)
       let url = "http://127.0.0.1:8000/movies/"
@@ -69,17 +89,18 @@ export default {
         console.log(err)
       })
     },
-    getDetail(id, type){
+    getDetail(){
       let url = "http://127.0.0.1:8000/movies/"
-      this.type = type
-      if (type === 'movie') {
+      this.type = `${this.$route.params.media_type}`
+      console.log(this.type)
+      if (this.type === 'movie') {
         url = url + 'moviedetail/' 
       } 
-      else if (type === 'tv') {
+      else if (this.type === 'tv') {
         url = url + 'tvdetail/'
       }
       axios({
-        url: url+id+'/',
+        url: url+`${this.$route.params.id}`,
         method : 'get' 
       })
       .then((res) => {
@@ -127,8 +148,9 @@ export default {
   },
   created() {
     this.getOTT(this.$route.params.id, this.$route.params.media_type)
-    this.getDetail(this.$route.params.id, this.$route.params.media_type)
+    this.getDetail()
     this.getreview(this.$route.params.id)
+    this.getstar(this.$route.params.id)
   }
 }
 </script>

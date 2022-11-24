@@ -38,9 +38,9 @@ export default {
         }
       })
         .then(() => {
-          this.$parent.getrecomment()
           this.inputdata = ""
           alert("등록되었습니다.")
+          this.$parent.getrecomment()
         })
         .catch((err) => {
           console.log(err)

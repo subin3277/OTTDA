@@ -63,10 +63,6 @@
         >&gt;&gt;</a
       >
     </div>
-
-    <div class="btnRightWrap">
-      <a @click="gocreate" class="btn">새 게시물 작성</a>
-    </div>
   </div>
 </template>
 
@@ -213,5 +209,9 @@ table {
   display: inline-blcok;
   padding: 0 5px;
   color: #666;
+}
+
+strong {
+  color: #a3e1f4
 }
 </style>

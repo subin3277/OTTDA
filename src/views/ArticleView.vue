@@ -214,4 +214,8 @@ table {
   padding: 0 5px;
   color: #666;
 }
+
+strong {
+  color: #a3e1f4
+}
 </style>

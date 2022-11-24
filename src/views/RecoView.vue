@@ -7,7 +7,7 @@
         <div class="keywords">
 
         </div>
-        <RecoSearchListItem v-for="(lst, idx) in searchlist" :key="idx" :searchItem="lst"/>
+        <RecoSearchListItem v-for="(lst, idx) in searchlist" :key="idx" :searchItem="lst" style="width:500px"/>
       </div>
       <!-- <button style="margin-left : 10px">검색</button> -->
     </div>
@@ -19,17 +19,31 @@
       <input type="checkbox" id="p_4" class="checkbox"/> <label for="p_4">4</label>
     </p>
     <button @click="getreco">추천받기</button>
+
+    <h2 style="margin-top:20px">1인</h2>
+    <hr>
+    <reco-res-item :ottlist="ottlist[0]" :price="ott[1]"/>
+
+    <h2 style="margin-top:20px">2인</h2>
+    <hr>
+    <reco-res-item :ottlist="ottlist[1]" :price="ott[2]"/>
+
+    <h2 style="margin-top:20px">4인</h2>
+    <hr>
+    <reco-res-item :ottlist="ottlist[3]" :price="ott[4]"/>
   </div>
 </template>
 
 <script>
 import RecoSearchListItem from '@/components/RecoSearchListItem.vue'
 import axios from 'axios'
+import RecoResItem from '@/components/RecoResItem.vue'
 
 export default {
   name: "RecoView",
   components: {
     RecoSearchListItem,
+    RecoResItem,
   },
   data() {
     return {
@@ -38,6 +52,8 @@ export default {
       list : [],
       inputid : null,
       inputtype : null,
+      ottlist : [],
+      ott : [],
     }
   },
   methods : {
@@ -52,6 +68,8 @@ export default {
         }
       })
       .then((res) => {
+        this.ott = res.data
+        this.ottlist = res.data.list
         console.log(res.data)
       })
       .catch((err) => {
@@ -103,6 +121,7 @@ export default {
             const $li = document.createElement("li")
             $li.textContent = `${lst.title}`
             $li.setAttribute('id', lst.multi_id)
+            $li.setAttribute('style', 'width:500px')
             $li.className = lst.media_type
             $li.style.border = "0.5px solid black"
             $ul.append($li)
@@ -168,5 +187,11 @@ export default {
   li {
     list-style: none;
     padding-left: 0px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
   }
 </style>

@@ -3,8 +3,16 @@
     <th style="width: 15%">{{ comment.user_nickname }}</th>
     <td style="width: 85%">
       <div>
-        {{ comment.content }}
-        <img src="../assets/back-arrow.png" style="width:20px" @click="recommnetcreate">
+        <span v-if="!commentst">{{ comment.content }} | </span>
+        <span v-else>
+          <input type="text" v-model = "inputdata">
+          <button @click="updatecomment">완료</button>
+        </span>
+        <span style="margin-right : 10px" @click="recommentcreate"> 답글</span>
+        <span v-if="$store.state.user.id === comment.user">
+          <span style="margin-right : 10px" @click="updatecommentst">수정</span>
+          <span style="margin-right : 10px" @click="deletecomment">삭제</span>
+        </span>
       </div>
 
       <div class="listWrap">
@@ -14,13 +22,25 @@
             <col width='*'/>
           </colgroup>
           <tr class="comment-list-item" v-for="(lst, idx) in recomment" :key="idx">
-            <td>{{ lst.user_nickname }}</td>
-            <td>{{ lst.content }}</td>
+            <th>{{ lst.user_nickname }}</th>
+            <td>
+              <div>
+                <span v-if="!recommentst">{{ lst.content }} </span>
+                <!-- <span v-else>
+                  <input type="text" @input="reinputdata" :value=lst.content>
+                  <button @click="updaterecomment">완료</button>
+                </span>
+                <span v-if="$store.state.user.id === lst.user">
+                  <span style="margin-right : 10px" @click="updaterecommentst">수정</span>
+                  <span style="margin-right : 10px" @click="deleterecomment">삭제</span>
+                </span> -->
+              </div>
+            </td>
           </tr>
         </table>
       </div>
 
-      <template v-if="recommentcreate">
+      <template v-if="recommentcreatest">
         <RecommentCreateItem :commentid ="comment.id"/>
       </template>
     </td>
@@ -42,7 +62,11 @@ export default {
   data() {
     return {
       recomment: [],
-      recommentcreate : false,
+      recommentcreatest : false,
+      inputdata : this.comment.content,
+      reinputdata : '',
+      commentst : false,
+      recommentst : false,
     }
   },
   methods: {
@@ -63,9 +87,95 @@ export default {
           console.log(err)
         })
     },
-    recommnetcreate() {
-      this.recommentcreate = !this.recommentcreate
+    recommentcreate() {
+      this.recommentcreatest = !this.recommentcreatest
     },
+    updatecommentst(){
+      this.commentst = !this.commentst
+    },
+    updaterecommentst(){
+      this.recommentst = !this.recommentst
+    },
+    updatecomment(){
+      const url = "http://127.0.0.1:8000/api/v1/comments/"
+      axios({
+        url : url + this.comment.id + '/',
+        method : 'PUT',
+        data : {
+          content : this.inputdata,
+          user : this.comment.user
+        },
+        headers : {
+          Authorization : `Bearer ${this.$store.state.user.token}`
+        }
+      })
+      .then(() => {
+        alert('댓글이 수정되었습니다.')
+        this.$parent.getdetail(this.comment.article)
+      })
+      .catch((err) => {
+        alert('수정에 실패하였습니다.')
+        console.log(err)
+      })
+    },
+    deletecomment() {
+      const url = "http://127.0.0.1:8000/api/v1/comments/"
+      axios({
+        url : url+this.comment.id,
+        method : 'delete',
+        headers : {
+          Authorization : `Bearer ${this.$store.state.user.token}`
+        }
+      })
+      .then(() => {
+        alert('댓글이 삭제되었습니다.')
+        this.$parent.getdetail(this.comment.article)
+      })
+      .catch((err) => {
+        console.log(err)
+        alert('댓글 삭제에 실패하였습니다.')
+      })
+    },
+    updaterecomment(){
+      const url = "http://127.0.0.1:8000/api/v1/recomments/"
+      axios({
+        url : url + this.comment.id + '/',
+        method : 'PUT',
+        data : {
+          content : this.reinputdata,
+          user : this.lst.user
+        },
+        headers : {
+          Authorization : `Bearer ${this.$store.state.user.token}`
+        }
+      })
+      .then(() => {
+        alert('댓글이 수정되었습니다.')
+        this.$parent.getdetail(this.comment.article)
+      })
+      .catch((err) => {
+        alert('수정에 실패하였습니다.')
+        console.log(err)
+      })
+    },
+    deleterecomment(){
+      const url = "http://127.0.0.1:8000/api/v1/recomments/"
+      axios({
+        url : url+this.recomment.id,
+        method : 'delete',
+        headers : {
+          Authorization : `Bearer ${this.$store.state.user.token}`
+        }
+      })
+      .then(() => {
+        alert('댓글이 삭제되었습니다.')
+        this.$parent.getdetail(this.comment.article)
+      })
+      .catch((err) => {
+        console.log(err)
+        alert('댓글 삭제에 실패하였습니다.')
+      })
+    }
   },
   created() {
     this.getrecomment()

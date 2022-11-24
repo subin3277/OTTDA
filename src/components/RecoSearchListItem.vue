@@ -1,5 +1,5 @@
 <template>
-  <div id="searchitem">
+  <div id="searchitem" style="width:500px">
     <span style="margin-left:5px">{{searchItem.title}}</span>
     <!-- <span style="margin-left:5px">{{searchItem.id}}</span> -->
     <div>x</div>
@@ -17,7 +17,7 @@ export default {
 
 <style>
 #searchitem {
-  display: flex;
+  
   justify-content: space-between;
   background-color: #FDF5C7;
   margin: 2px;

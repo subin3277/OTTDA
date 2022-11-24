@@ -13,6 +13,7 @@ import ScrollView from "../views/ScrollView.vue"
 import ReviewView from "../views/ReviewView.vue"
 import ReviewDetailView from "../views/ReviewDetailView.vue"
 import CreateReviewView from "../views/CreateReview.vue"
+import UpdateArticle from "../views/UpdateArticle.vue"
 
 Vue.use(VueRouter)
 
@@ -34,7 +35,7 @@ const routes = [
     component: SearchView,
   },
   {
-    path: "/detail",
+    path: "/detail/:media_type/:id",
     name: "detail",
     component: DetailView,
   },
@@ -54,19 +55,24 @@ const routes = [
     component: SignupView,
   },
   {
+    path: "/article",
+    name: "article",
+    component: ArticleView,
+  },
+  {
     path: "/article/create",
     name: "createarticle",
     component: CreateArticleView,
   },
   {
-    path: "/article/detail",
+    path: "/article/detail/:id",
     name: "articledetail",
     component: ArticleDetailView,
   },
   {
-    path: "/article",
-    name: "article",
-    component: ArticleView,
+    path: "/article/update/:id",
+    name: "updatearticle",
+    component: UpdateArticle,
   },
   {
     path: "/reviews/create",
@@ -74,7 +80,7 @@ const routes = [
     component: CreateReviewView,
   },
   {
-    path: "/reviews/detail",
+    path: "/reviews/detail/:id",
     name: "reviewdetail",
     component: ReviewDetailView,
   },
@@ -83,7 +89,6 @@ const routes = [
     name: "review",
     component: ReviewView,
   },
-
 ]
 
 const router = new VueRouter({
