@@ -1,6 +1,6 @@
 <template>
   <div id="searchitem" style="width:500px">
-    <span style="margin-left:5px">{{searchItem.title}}</span>
+    <span style="margin-left:10px; font-family:cafeair; font-size:20px">{{searchItem.title}}</span>
     <!-- <span style="margin-left:5px">{{searchItem.id}}</span> -->
     <!-- <div @click="deletelist">x</div> -->
   </div>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="inputform">
-      <span style="margin-right:10px">영상 제목</span>
+      <span style="margin-right:10px; font-size:20px">영상 제목</span>
       <div @keyup.enter="pluslist">
         <input type="text" class="keyword" autocomplete="off" @keyup="recosearch" style="width:500px" :value="inputdata" @input="inputdata = $event.target.value"/>
         <div class="keywords">
@@ -20,6 +20,7 @@
     </p> -->
     <button @click="getreco" style="margin:30px">추천받기</button>
 
+    <h2 style="margin-bottom:20px">OTT를 추천해드릴게요!</h2>
     <h2 style="margin-top:20px">1인</h2>
     <hr>
     <reco-res-item :ottlist="ottlist[0]" :price="ott[1]"/>

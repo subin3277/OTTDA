@@ -18,7 +18,7 @@
     </div> -->
     <div>
       <h1>인기 차트</h1>
-      <MovieRankList style="width:100%"/>
+      <MovieRankList style="width: 100%" />
 
       <div class="multi">
         <div>
@@ -50,7 +50,7 @@
         </div>
 
         <div>
-          <h2>인기 리뷰</h2>
+          <h2>최신 리뷰</h2>
           <div class="listWrap">
             <table class="tbList">
               <colgroup>
@@ -92,13 +92,15 @@ export default {
   data() {
     return {
       articlelist: [],
-      reviewlist : [],
+      reviewlist: [],
     }
   },
   methods: {
     getarticle() {
       const url = `${this.$store.state.url}`+"api/v1/articles/"
+
       // const url = "http://52.196.3.18:8000/api/v1/articles/"
+      console.log(url)
       axios({
         url: url,
         method: "get",
@@ -127,7 +129,7 @@ export default {
       // 1s cubic-bezier(0.550, 0.085, 0.680, 0.530)
     },
     getreview() {
-      const url = `${this.$store.state.url}`+"reviews/reviews/"
+      const url = `${this.$store.state.url}` + "reviews/reviews/"
       // const url = "http://52.196.3.18:8000/reviews/reviews/"
       axios({
         url: url,
@@ -145,6 +147,7 @@ export default {
   created() {
     this.getarticle()
     this.getreview()
+    this.$store.dispatch('change')
   },
 }
 </script>
