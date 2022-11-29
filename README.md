@@ -45,6 +45,8 @@
 | Server | AWS EC2 |  |  |
 | Design | Figma |  |  |
 
+## API
+[Home](https://github.com/subin3277/OTTDA_vue/wiki)
 
 ## 총평
 ### 아쉬운 점
