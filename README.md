@@ -32,10 +32,17 @@
 
 
 ## 설계
+<details>
+  <summary>상세 내용 확인</summary>
+  <div markdown="1">
+  
 ### 메뉴 구성도
 ![메뉴 구성도](캡처.JPG)
 ### ERD
 ![ERD](ERD.png)
+
+  </div>
+</details>
 
 ## 개발 환경
 | 구분 | 개발환경 | 개발도구 | 개발언어 |
