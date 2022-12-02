@@ -58,7 +58,13 @@
 | Design | Figma |  |  |
 
 ## API
+<details>
+  <summary>상세 내용 확인</summary>
+  <div markdown="1">
 [Home](https://github.com/subin3277/OTTDA_vue/wiki)
+
+  </div>
+</details>
 
 ## 총평
 ### 아쉬운 점
