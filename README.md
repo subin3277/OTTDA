@@ -63,6 +63,17 @@
   <div markdown="1">
   
 [Home](https://github.com/subin3277/OTTDA_vue/wiki)
+* Movie  
+  [MovieRank](https://github.com/subin3277/OTTDA_vue/wiki/%5BGET%5D%EC%98%81%ED%99%94-%EB%9E%AD%ED%81%AC)  
+  [TVRank](https://github.com/subin3277/OTTDA_vue/wiki/%5BGET%5D-TV-%EB%9E%AD%ED%81%AC)  
+  [MovieOTT](https://github.com/subin3277/OTTDA/wiki/%5BGET%5D-TV-OTT-%EB%8D%B0%EC%9D%B4%ED%84%B0)  
+  [TVOTT](https://github.com/subin3277/OTTDA/wiki/%5BGET%5D-TV-OTT-%EB%8D%B0%EC%9D%B4%ED%84%B0)  
+
+* Article
+
+* Review
+
+* Accounts
 
   </div>
 </details>
