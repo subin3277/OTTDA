@@ -23,6 +23,7 @@
 <details>
   <summary>상세 내용 확인</summary>
   <div markdown="1">
+  
 ### 요구사항 명세서
 
 | 기능 | 설명 |
